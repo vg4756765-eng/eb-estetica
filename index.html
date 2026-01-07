@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Estética Automotiva</title>
+
+  <!-- Responsividade -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      background: #1c1c1c;
+      padding: 25px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 420px; /* Mobile */
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 22px;
+    }
+
+    label {
+      display: block;
+      margin-top: 14px;
+      font-size: 14px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 15px;
+      background: #25d366;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: #1ebe5d;
+      transform: scale(1.02);
+    }
+
+    #endereco-container {
+      display: none;
+    }
+
+    /* ===== AJUSTES PARA PC ===== */
+    @media (min-width: 768px) {
+      .container {
+        max-width: 520px; /* mais largo no PC */
+        padding: 35px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      label {
+        font-size: 15px;
+      }
+
+      input, textarea, select {
+        font-size: 16px;
+      }
+
+      button {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Agendamento - Eb Estética</h2>
+
+    <label>Nome</label>
+    <input type="text" id="nome" placeholder="Seu nome" required>
+
+    <label>Modelo do veículo</label>
+    <input type="text" id="modelo" placeholder="Ex: Gol G6" required>
+
+    <label>O que deseja fazer no veículo?</label>
+    <textarea id="servico" rows="3" placeholder="Lavagem completa, polimento..." required></textarea>
+
+    <label>Precisa buscar o veículo?</label>
+    <select id="buscar" onchange="mostrarEndereco()">
+      <option value="nao">Não</option>
+      <option value="sim">Sim</option>
+    </select>
+
+    <div id="endereco-container">
+      <label>Endereço</label>
+      <input type="text" id="endereco" placeholder="Rua, número, bairro">
+    </div>
+
+    <label>Horário desejado que entregue seu veículo</label>
+    <input type="time" id="horario" required>
+
+    <button onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
+  </div>
+
+  <script>
+    function mostrarEndereco() {
+      const buscar = document.getElementById("buscar").value;
+      const enderecoDiv = document.getElementById("endereco-container");
+
+      enderecoDiv.style.display = buscar === "sim" ? "block" : "none";
+    }
+
+    function enviarWhatsApp() {
+      const nome = document.getElementById("nome").value;
+      const modelo = document.getElementById("modelo").value;
+      const servico = document.getElementById("servico").value;
+      const buscar = document.getElementById("buscar").value;
+      const endereco = document.getElementById("endereco").value;
+      const horario = document.getElementById("horario").value;
+
+      let mensagem = `Olá, meu nome é ${nome}. Tenho um ${modelo} e gostaria de fazer o seguinte serviço: ${servico}.`;
+
+      if (buscar === "sim") {
+        mensagem += ` Preciso que busque o veículo no endereço: ${endereco}.`;
+      } else {
+        mensagem += ` Eu mesmo levarei o veículo até a lavagem.`;
+      }
+
+      mensagem += ` Gostaria que entregasse o veículo para as ${horario}.`;
+
+      const telefone = "5554996396320"; 
+      const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
