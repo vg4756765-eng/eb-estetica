@@ -29,12 +29,22 @@
       padding: 25px;
       border-radius: 12px;
       width: 100%;
-      max-width: 420px; /* Mobile */
+      max-width: 420px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+
+    /* LOGO */
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 15px auto;
+      border: 3px solid #25d366;
     }
 
     h2 {
-      text-align: center;
       margin-bottom: 25px;
       font-size: 22px;
     }
@@ -43,9 +53,10 @@
       display: block;
       margin-top: 14px;
       font-size: 14px;
+      text-align: left;
     }
 
-    input, textarea, select {
+    input, select {
       width: 100%;
       padding: 12px;
       margin-top: 6px;
@@ -53,10 +64,6 @@
       border: none;
       outline: none;
       font-size: 15px;
-    }
-
-    textarea {
-      resize: none;
     }
 
     button {
@@ -81,23 +88,15 @@
       display: none;
     }
 
-    /* ===== AJUSTES PARA PC ===== */
+    /* ===== PC ===== */
     @media (min-width: 768px) {
       .container {
-        max-width: 520px; /* mais largo no PC */
+        max-width: 520px;
         padding: 35px;
       }
 
       h2 {
         font-size: 24px;
-      }
-
-      label {
-        font-size: 15px;
-      }
-
-      input, textarea, select {
-        font-size: 16px;
       }
 
       button {
@@ -109,7 +108,11 @@
 <body>
 
   <div class="container">
-    <h2>Agendamento - Eb Estética</h2>
+
+    <!-- LOGO -->
+    <img src="logo.png" alt="EB Estética Automotiva" class="logo">
+
+    <h2>Agendamento - EB Estética</h2>
 
     <label>Nome</label>
     <input type="text" id="nome" placeholder="Seu nome" required>
@@ -117,8 +120,19 @@
     <label>Modelo do veículo</label>
     <input type="text" id="modelo" placeholder="Ex: Gol G6" required>
 
-    <label>O que deseja fazer no veículo?</label>
-    <textarea id="servico" rows="3" placeholder="Lavagem completa, polimento..." required></textarea>
+    <label>Serviço desejado</label>
+    <select id="servico" required>
+      <option value="" disabled selected hidden>Selecione um serviço</option>
+      <option>Lavagem completa</option>
+      <option>Lavagem completa com cera</option>
+      <option>Lavagem só por fora</option>
+      <option>Lavagem só por dentro</option>
+      <option>Higienização completa</option>
+      <option>Higienização de bancos</option>
+      <option>Polimento</option>
+      <option>Restauração de farol</option>
+    </select>
+    
 
     <label>Precisa buscar o veículo?</label>
     <select id="buscar" onchange="mostrarEndereco()">
@@ -131,7 +145,7 @@
       <input type="text" id="endereco" placeholder="Rua, número, bairro">
     </div>
 
-    <label>Horário desejado que entregue seu veículo</label>
+    <label>Horário desejado para entrega do veículo</label>
     <input type="time" id="horario" required>
 
     <button onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
@@ -153,7 +167,7 @@
       const endereco = document.getElementById("endereco").value;
       const horario = document.getElementById("horario").value;
 
-      let mensagem = `Olá, meu nome é ${nome}. Tenho um ${modelo} e gostaria de fazer o seguinte serviço: ${servico}.`;
+      let mensagem = `Olá, meu nome é ${nome}. Tenho um ${modelo} e gostaria do serviço: ${servico}.`;
 
       if (buscar === "sim") {
         mensagem += ` Preciso que busque o veículo no endereço: ${endereco}.`;
@@ -163,7 +177,7 @@
 
       mensagem += ` Gostaria que entregasse o veículo para as ${horario}.`;
 
-      const telefone = "5554996396320"; 
+      const telefone = "5554996396320";
       const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
 
       window.open(url, "_blank");
