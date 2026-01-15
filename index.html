@@ -2,193 +2,253 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Estética Automotiva</title>
+  <title>EB Estética Automotiva</title>
 
-  <!-- Responsividade -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
       color: #fff;
-      margin: 0;
-      padding: 20px;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
-    .container {
-      background: #1c1c1c;
-      padding: 25px;
-      border-radius: 12px;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      padding: 40px 20px;
     }
 
     /* LOGO */
     .logo {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       object-fit: cover;
-      margin: 0 auto 15px auto;
       border: 3px solid #25d366;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
     }
 
-    h2 {
-      margin-bottom: 25px;
-      font-size: 22px;
+    .hero h1 {
+      font-size: 32px;
+      margin-bottom: 15px;
     }
 
-    label {
-      display: block;
-      margin-top: 14px;
+    .hero p {
+      font-size: 16px;
+      opacity: 0.85;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      background: #25d366;
+      color: #000;
+      padding: 16px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: #1ebe5d;
+      transform: scale(1.05);
+    }
+
+    /* ===== SEÇÕES ===== */
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .section h2 {
+      margin-bottom: 40px;
+      font-size: 24px;
+    }
+
+    /* ===== CARDS ===== */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #1c1c1c;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #25d366;
+      font-size: 18px;
+    }
+
+    .card p {
       font-size: 14px;
+      opacity: 0.85;
+    }
+
+    /* ===== COMO FUNCIONA ===== */
+    .gray {
+      background: #151515;
+    }
+
+    .steps {
+      list-style: none;
+      max-width: 600px;
+      margin: 0 auto;
       text-align: left;
     }
 
-    input, select {
-      width: 100%;
-      padding: 12px;
-      margin-top: 6px;
-      border-radius: 6px;
-      border: none;
-      outline: none;
-      font-size: 15px;
-    }
-
-    button {
-      margin-top: 25px;
-      width: 100%;
+    .steps li {
       padding: 15px;
-      background: #25d366;
-      border: none;
+      border-left: 4px solid #25d366;
+      margin-bottom: 15px;
+      background: #1c1c1c;
       border-radius: 8px;
-      font-size: 17px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s, transform 0.2s;
     }
 
-    button:hover {
-      background: #1ebe5d;
-      transform: scale(1.02);
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #0f0f0f;
+      padding: 40px 20px;
+      text-align: center;
     }
 
-    #endereco-container {
-      display: none;
+    .footer p {
+      margin-bottom: 10px;
+      font-size: 14px;
     }
 
     /* ===== PC ===== */
     @media (min-width: 768px) {
-      .container {
-        max-width: 520px;
-        padding: 35px;
+      .hero h1 {
+        font-size: 42px;
       }
 
-      h2 {
-        font-size: 24px;
-      }
-
-      button {
+      .hero p {
         font-size: 18px;
+      }
+
+      .btn {
+        font-size: 18px;
+      }
+
+      .logo {
+        width: 160px;
+        height: 160px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <!-- HERO -->
+  <header class="hero">
 
     <!-- LOGO -->
     <img src="logo.png" alt="EB Estética Automotiva" class="logo">
 
-    <h2>Agendamento - EB Estética</h2>
+    <h1>EB Estética Automotiva</h1>
+    <p>Serviços com cuidado e qualidade para seu veículo</p>
+    <a href="agendamento.html" class="btn">Agendar horário</a>
+  </header>
 
-    <label>Nome</label>
-    <input type="text" id="nome" placeholder="Seu nome" required>
+  <!-- SERVIÇOS -->
+  <section class="section">
+    <h2>Nossos serviços</h2>
 
-    <label>Modelo do veículo</label>
-    <input type="text" id="modelo" placeholder="Ex: Gol G6" required>
+    <div class="cards">
 
-    <label>Serviço desejado</label>
-    <select id="servico" required>
-      <option value="" disabled selected hidden>Selecione um serviço</option>
-      <option>Lavagem completa</option>
-      <option>Lavagem completa + cera</option>
-      <option>Lavagem completa + slow foam</option>
-      <option>Lavagem completa + slow foam + cera</option>
-      <option>Lavagem só por fora</option>
-      <option>Lavagem só por fora + slow foam</option>
-      <option>Lavagem só por fora + slow foam + cera</option>
-      <option>Lavagem só por dentro</option>
-      <option>Higienização completa</option>
-      <option>Higienização de bancos</option>
-      <option>Polimento</option>
-      <option>Restauração de farol</option>
-      <option>Cristalização de vidros</option>
-      <option>Revitalização de plásticos</option>
-    </select>
-    
+      <div class="card">
+        <img src="lavagem-simples.png" alt="Lavagem Simples">
+        <div class="card-content">
+          <h3>Lavagem Simples</h3>
+          <p>Limpeza externa do veículo.</p>
+        </div>
+      </div>
 
-    <label>Precisa buscar o veículo?</label>
-    <select id="buscar" onchange="mostrarEndereco()">
-      <option value="nao">Não</option>
-      <option value="sim">Sim</option>
-    </select>
+      <div class="card">
+        <img src="lavagem-completa.png" alt="Lavagem Completa">
+        <div class="card-content">
+          <h3>Lavagem Completa</h3>
+          <p>Limpeza externa e interna com acabamento detalhado.</p>
+        </div>
+      </div>
 
-    <div id="endereco-container">
-      <label>Endereço</label>
-      <input type="text" id="endereco" placeholder="Rua, número, bairro">
+      <div class="card">
+        <img src="higienizacao-interna.png" alt="Higienização Interna">
+        <div class="card-content">
+          <h3>Higienização Interna</h3>
+          <p>Limpeza profunda de bancos, tapetes e painel.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="lavagem-chassi.png" alt="Lavagem de Chassi">
+        <div class="card-content">
+          <h3>Lavagem de Chassi</h3>
+          <p>Limpeza completa da parte inferior do veículo.</p>
+        </div>
+      </div>
+
     </div>
+  </section>
 
-    <label>Horário desejado para entrega do veículo</label>
-    <input type="time" id="horario" required>
+  <!-- COMO FUNCIONA -->
+  <section class="section gray">
+    <h2>Como funciona</h2>
 
-    <button onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
-  </div>
+    <ul class="steps">
+      <li>Escolha o serviço desejado</li>
+      <li>Agende pelo site</li>
+      <li>Traga o veículo no horário marcado</li>
+      <li>Retire seu carro limpo e brilhando</li>
+    </ul>
+  </section>
 
-  <script>
-    function mostrarEndereco() {
-      const buscar = document.getElementById("buscar").value;
-      const enderecoDiv = document.getElementById("endereco-container");
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p><strong>Telefone:</strong> (00) 00000-0000</p>
+    <p><strong>Endereço:</strong> Rua Exemplo, 123</p>
 
-      enderecoDiv.style.display = buscar === "sim" ? "block" : "none";
-    }
-
-    function enviarWhatsApp() {
-      const nome = document.getElementById("nome").value;
-      const modelo = document.getElementById("modelo").value;
-      const servico = document.getElementById("servico").value;
-      const buscar = document.getElementById("buscar").value;
-      const endereco = document.getElementById("endereco").value;
-      const horario = document.getElementById("horario").value;
-
-      let mensagem = `Olá, meu nome é ${nome}. Tenho um ${modelo} e gostaria do serviço: ${servico}.`;
-
-      if (buscar === "sim") {
-        mensagem += ` Preciso que busque o veículo no endereço: ${endereco}.`;
-      } else {
-        mensagem += ` Eu mesmo levarei o veículo até a lavagem.`;
-      }
-
-      mensagem += ` Gostaria que entregasse o veículo para as ${horario}.`;
-
-      const telefone = "5554996396320";
-      const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
-
-      window.open(url, "_blank");
-    }
-  </script>
+    <br>
+    <a href="agendamento.html" class="btn">Agendar horário</a>
+  </footer>
 
 </body>
 </html>
