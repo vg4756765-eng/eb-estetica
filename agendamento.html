@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Estética Automotiva</title>
+
+  <!-- Responsividade -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      background: #1c1c1c;
+      padding: 25px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+
+    /* LOGO */
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 15px auto;
+      border: 3px solid #25d366;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      font-size: 22px;
+    }
+
+    label {
+      display: block;
+      margin-top: 14px;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 15px;
+      background: #25d366;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: #1ebe5d;
+      transform: scale(1.02);
+    }
+
+    #endereco-container {
+      display: none;
+    }
+
+    /* ===== PC ===== */
+    @media (min-width: 768px) {
+      .container {
+        max-width: 520px;
+        padding: 35px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      button {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- LOGO -->
+    <img src="logo.png" alt="EB Estética Automotiva" class="logo">
+
+    <h2>Agendamento - EB Estética</h2>
+
+    <label>Nome</label>
+    <input type="text" id="nome" placeholder="Seu nome" required>
+
+    <label>Modelo do veículo</label>
+    <input type="text" id="modelo" placeholder="Ex: Gol G6" required>
+
+    <label>Serviço desejado</label>
+    <select id="servico" required>
+      <option value="" disabled selected hidden>Selecione um serviço</option>
+      <option>Lavagem completa</option>
+      <option>Lavagem completa + cera</option>
+      <option>Lavagem completa + slow foam</option>
+      <option>Lavagem completa + slow foam + cera</option>
+      <option>Lavagem só por fora</option>
+      <option>Lavagem só por fora + slow foam</option>
+      <option>Lavagem só por dentro</option>
+      <option>Higienização completa</option>
+      <option>Higienização de bancos</option>
+      <option>Polimento</option>
+      <option>Restauração de farol</option>
+      <option>Cristalização de vidros</option>
+      <option>Revitalização de plásticos</option>
+    </select>
+    
+
+    <label>Precisa buscar o veículo?</label>
+    <select id="buscar" onchange="mostrarEndereco()">
+      <option value="nao">Não</option>
+      <option value="sim">Sim</option>
+    </select>
+
+    <div id="endereco-container">
+      <label>Endereço</label>
+      <input type="text" id="endereco" placeholder="Rua, número, bairro">
+    </div>
+
+    <label>Horário desejado para entrega do veículo</label>
+    <input type="time" id="horario" required>
+
+    <button onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
+  </div>
+
+  <script>
+    function mostrarEndereco() {
+      const buscar = document.getElementById("buscar").value;
+      const enderecoDiv = document.getElementById("endereco-container");
+
+      enderecoDiv.style.display = buscar === "sim" ? "block" : "none";
+    }
+
+    function enviarWhatsApp() {
+      const nome = document.getElementById("nome").value;
+      const modelo = document.getElementById("modelo").value;
+      const servico = document.getElementById("servico").value;
+      const buscar = document.getElementById("buscar").value;
+      const endereco = document.getElementById("endereco").value;
+      const horario = document.getElementById("horario").value;
+
+      let mensagem = `Olá, meu nome é ${nome}. Tenho um ${modelo} e gostaria do serviço: ${servico}.`;
+
+      if (buscar === "sim") {
+        mensagem += ` Preciso que busque o veículo no endereço: ${endereco}.`;
+      } else {
+        mensagem += ` Eu mesmo levarei o veículo até a lavagem.`;
+      }
+
+      mensagem += ` Gostaria que entregasse o veículo para as ${horario}.`;
+
+      const telefone = "5554996396320";
+      const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
